@@ -1,7 +1,7 @@
 const url = "https://script.google.com/macros/s/AKfycbw7OPr15jjw_GsEJsI_djsW1U-Mzni0lF2waHlmU1SQ2DILil8QB_HyWiHTABNpMzSP/exec";
 
 // ===============================
-// LISTA DE CONVIDADOS (OFICIAL)
+// LISTA DE CONVIDADOS (MANTÉM A SUA LISTA AQUI)
 // ===============================
 const CONVIDADOS = [
   "Geniel",
@@ -93,8 +93,6 @@ const CONVIDADOS = [
   "Bianca",
   "Julia",
   "Isadora",
-  "Nathalia",
-  "Nat",
   "Gabriela",
   "Gabi",
   "Felipe",
@@ -104,7 +102,7 @@ const CONVIDADOS = [
 // Mensagem delicada quando não estiver na lista
 const MSG_NAO_ENCONTRADO =
   "Ops! Não encontramos esse nome na nossa lista de convidados. " +
-  "Confira se foi digitado corretamente e tente novamente.";
+  "Confira se foi digitado corretamente e tenta de novo.";
 
 // ===============================
 // NORMALIZAÇÃO E MATCH (tolerante a errinho)
@@ -132,9 +130,9 @@ function distanciaLevenshtein(a, b) {
     for (let j = 1; j <= m; j++) {
       const custo = b[i - 1] === a[j - 1] ? 0 : 1;
       dp[i][j] = Math.min(
-        dp[i - 1][j] + 1,      // remoção
-        dp[i][j - 1] + 1,      // inserção
-        dp[i - 1][j - 1] + custo // troca
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + custo
       );
     }
   }
@@ -145,26 +143,21 @@ function nomeEstaNaLista(nomeDigitado) {
   const alvo = normalizarTexto(nomeDigitado);
   if (!alvo) return false;
 
-  // limite de erro: nomes curtos toleram 1, nomes maiores toleram 2
   const limite = alvo.length <= 6 ? 1 : 2;
 
   return CONVIDADOS.some((nomeLista) => {
     const base = normalizarTexto(nomeLista);
 
-    // 1) Igual
     if (base === alvo) return true;
 
-    // 2) Contém (pra casos tipo "maria rosario" vs "maria do rosario")
-    // Só permite se tiver pelo menos 4 letras (evita "a" passando em tudo)
     if (alvo.length >= 4 && (base.includes(alvo) || alvo.includes(base))) return true;
 
-    // 3) Erro pequeno de digitação
     return distanciaLevenshtein(base, alvo) <= limite;
   });
 }
 
 // ===============================
-// CONTADOR (seu, intacto)
+// CONTADOR
 // ===============================
 function atualizarContador() {
   const dataCasamento = new Date("2026-04-19T12:30:00");
@@ -188,7 +181,7 @@ setInterval(atualizarContador, 1000);
 atualizarContador();
 
 // ===============================
-// FORM (seu, intacto) + validação antes de enviar
+// FORM + validação antes de enviar (sem mudar seu HTML)
 // ===============================
 document.getElementById("formConfirmacao").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -196,7 +189,6 @@ document.getElementById("formConfirmacao").addEventListener("submit", function (
   const nome = this.querySelector("input").value;
   const presenca = this.querySelector("select").value;
 
-  // ✅ BLOQUEIO: só envia se estiver na lista
   if (!nomeEstaNaLista(nome)) {
     document.getElementById("mensagem").innerText = MSG_NAO_ENCONTRADO;
     return;
@@ -211,12 +203,42 @@ document.getElementById("formConfirmacao").addEventListener("submit", function (
   })
     .then(() => {
       document.getElementById("mensagem").innerText =
-        "Presença confirmada 🤍"; 
+        "Presença confirmada 🤍 Obrigada!";
       this.reset();
     })
     .catch(() => {
       document.getElementById("mensagem").innerText =
         "Erro ao enviar. Tente novamente.";
     });
-
 });
+
+// ===============================
+// REVEAL ANIMATION (aparece suavemente ao rolar)
+// ===============================
+(function ativarReveal() {
+  const elementos = [
+    ...document.querySelectorAll(".secao"),
+    ...document.querySelectorAll(".card"),
+    ...document.querySelectorAll(".fotos-noivos img"),
+    document.querySelector(".contador-fixo")
+  ].filter(Boolean);
+
+  elementos.forEach(el => el.classList.add("reveal"));
+
+  // Se não suportar IntersectionObserver, mostra tudo
+  if (!("IntersectionObserver" in window)) {
+    elementos.forEach(el => el.classList.add("is-visible"));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  elementos.forEach(el => io.observe(el));
+})();
