@@ -104,7 +104,7 @@ const CONVIDADOS = [
 // Mensagem delicada quando não estiver na lista
 const MSG_NAO_ENCONTRADO =
   "Ops! Não encontramos esse nome na nossa lista de convidados. " +
-  "Confira se foi digitado corretamente e tenta de novo.";
+  "Confira se foi digitado corretamente e tente novamente.";
 
 // ===============================
 // NORMALIZAÇÃO E MATCH (tolerante a errinho)
@@ -218,4 +218,5 @@ document.getElementById("formConfirmacao").addEventListener("submit", function (
       document.getElementById("mensagem").innerText =
         "Erro ao enviar. Tente novamente.";
     });
+
 });
