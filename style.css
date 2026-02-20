@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #2f3a33;
+    background: #eef1ed;
+    position: relative;
+}
+
+/* BACKGROUND EM TELA CHEIA */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("imagens/background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+/* TOPO */
+.topo {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(238, 241, 237, 0.92);
+    padding: 15px 0;
+    z-index: 10;
+}
+
+.topo nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.topo nav a {
+    text-decoration: none;
+    color: #3b4a42;
+    font-weight: 500;
+}
+
+/* CONTADOR */
+.contador-fixo {
+    position: fixed;
+    top: 65px;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 1px;
+    z-index: 9;
+}
+
+/* SEÇÕES */
+.secao {
+    padding: 160px 20px 60px;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.home h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 18px;
+}
+
+.home h2 {
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    font-weight: 500;
+    margin-bottom: 28px;
+}
+
+.secao h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.secao p {
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 650px;
+    margin: auto;
+}
+
+/* CARDS */
+.card {
+    background: rgba(255,255,255,0.85);
+    padding: 25px;
+    margin: 25px auto;
+    border-radius: 14px;
+    max-width: 500px;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #4a6b5f;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* FORM */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 350px;
+    margin: auto;
+}
+
+input, select, button {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #cfd6d1;
+    font-size: 1rem;
+}
+
+button {
+    background: #4a6b5f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* FOTOS DOS NOIVOS */
+.fotos-noivos {
+    margin-top: 40px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.fotos-noivos img {
+    width: 220px;
+    border-radius: 18px;
+    object-fit: cover;
+}

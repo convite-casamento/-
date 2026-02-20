@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Roberta & Vitor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topo">
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#enderecos">Endereços</a>
+        <a href="#confirmacao">Confirmação</a>
+        <a href="#sobre">O casal</a>
+    </nav>
+</header>
+
+<div class="contador-fixo">
+    <span id="tempo"></span>
+</div>
+
+<section id="home" class="secao home">
+    <h1>Roberta e Vitor</h1>
+    <p>
+        Namoramos, tivemos nossa filha, moramos juntos, enfrentamos a vida… Só faltava casar! 
+        Depois de 20 anos, chegou o grande dia. Venha celebrar com a gente!
+    </p>
+</section>
+
+<section id="enderecos" class="secao">
+    <h2>Endereços e Horários</h2>
+
+    <div class="card">
+        <h3>Cerimônia</h3>
+        <p>19 de abril de 2026 • 12h30</p>
+        <p>Paróquia Nossa Senhora da Esperança</p>
+        <a href="https://www.google.com/maps?ll=-23.715216,-46.7014&z=17&t=m&hl=pt-BR&gl=US&mapclient=embed&q=R.+Nossa+Sra.+de+Nazar%C3%A9,+101+-+Cidade+Dutra+S%C3%A3o+Paulo+-+SP+04805-100" target="_blank">
+            Ver endereço
+        </a>
+    </div>
+
+    <div class="card">
+        <h3>Recepção</h3>
+        <p>Após a cerimônia 13:30 </p>
+        <p>Buffet Piatto • Av. Interlagos, 3860</p>
+        <a href="https://www.google.com/maps?ll=-23.682028,-46.689927&z=17&t=m&hl=pt-BR&gl=US&mapclient=embed&q=Av.+Interlagos,+3860+-+Jardim+Umuarama+S%C3%A3o+Paulo+-+SP+04660-006" target="_blank">
+            Ver endereço
+        </a>
+    </div>
+</section>
+
+<section id="confirmacao" class="secao">
+    <h2>Confirmação de Presença</h2>
+
+    <form id="formConfirmacao">
+        <input type="text" placeholder="Nome completo" required>
+        <select required>
+            <option value="">Você irá comparecer?</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+        </select>
+        <button type="submit">Confirmar</button>
+    </form>
+
+    <p id="mensagem"></p>
+</section>
+
+<section id="sobre" class="secao">
+    <h2>Sobre nós</h2>
+
+    <p>
+    Nossa história começou na juventude, no ano de 2005, quando tínhamos apenas 15 anos.
+Crescemos juntos, unidos pela amizade, pelo amor e pela companheirismo em todos os momentos da vida.
+Pela graça de Deus, constituímos um lar, formamos uma família e fomos abençoados com uma filha, que é motivo de grande orgulho e sinal do amor divino entre nós.
+Com o coração cheio de fé e gratidão, decidimos consagrar nossa união no Sacramento do Matrimônio, sob a bênção de Deus e da Santa Igreja.
+    </p>
+
+    <div class="fotos-noivos">
+        <img src="imagens/noivos1.png" alt="Roberta e Vitor">
+        <img src="imagens/noivos2.png" alt="Roberta e Vitor">
+        <img src="imagens/noivos3.png" alt="Roberta e Vitor">
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
